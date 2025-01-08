@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    div.container{
+      border: 1px solid #ccc;
+      width: 80%;
+      /* height: 90vh; */
+      font-size: small;
+      padding: 5px;
+    }
+    div.button {
+      width: 18%;
+      padding: 5px;
+      margin: 0 auto;
+    }
+    input.tel {
+      width: 60px;
+    }
+    img {
+      width: 12px;
+    }
+    label {
+      display: inline-block;
+      width: 20%;
+      text-align: right;
+      margin-right: 10px;
+    }
+    select {
+      width: 250px;
+    }
+    /* input[type="radio"] {
+      width: 30px;
+    } */
+    /* hr의 첫 번째 요소 */
+    hr:nth-of-type(1) {
+      border: 1.5px solid rgb(32, 155, 185);
+    }
+    /* hr의 뒤에서 첫 번째 요소 = 마지막 요소 */
+    hr:nth-last-of-type(1) {
+      border: 1.5px solid rgb(32, 155, 185);
+    }
+    input.password {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <form action="신규회원데이터베이스">
+  <div class="container">
+    <h3 style="text-align: center;">회원가입 신청 </h3>
+    <!-- <fieldset> -->
+    <hr>
+    <label for="member_id"><img src="check.png" alt="체크"> 아이디</label>
+    <input type="text" name="" id="member_id" >
+    <button>중복아이디 검색</button>
+    <hr>
+    <label for="member_name"><img src="check.png" alt="체크"> 이름</label>
+    <input type="text" name="" id="member_name">
+    <hr>
+    <label for="member_passwd"><img src="check.png" alt="체크"> 비밀번호</label>
+    <input class="password" type="password" name="" id="member_passwd">
+    <span style="font-size:x-small;">(8~20자의 영문대소문자, 숫자, 특수문자만 가능합니다.)</span>
+    <hr>
+    <label for="member_passwdCheck"><img src="check.png" alt="체크"> 비밀번호확인</label>
+    <input type="password" name="" id="member_passwdCheck">
+    <hr>
+    <label for="member_passwdHint"><img src="check.png" alt="체크"> 비밀번호힌트</label>
+    <select name="" id="member_passwdHint">
+      <option>힌트를 선택하세요.</option>
+      <option>반려동물의 이름은?</option>
+      <option>어릴적에 꿈 꿨던 장래희망은?</option>
+      <option>가장 좋아하는 음식은?</option>
+      <option>가장 잘하는 스포츠는?</option>
+      <option>좋아하는 책의 이름은?</option>
+    </select>
+    <hr>
+    <label for="member_passwdHintAnswer"><img src="check.png" alt="체크"> 비밀번호정답</label>
+    <input type="text" name="" id="member_passwdHintAnswer">
+    <hr>
+    <label for="tellNum">전화번호</label>
+    <!-- class가 tel이기도 하고 password이기도 하다 -->
+    <input class="tel password" type="text" name="" id="tellNum"> - 
+    <input class="tel" type="text"> - 
+    <input class="tel" type="text">
+    <hr>
+    <label for="phoneNum">핸드폰번호</label>
+    <input type="text" name="" id="phoneNum">
+    <hr>
+    <label for="email"><img src="check.png" alt="체크"> 이메일주소</label>
+    <input type="email" name="" id="email" >
+    <hr>
+    <label for=""><img src="check.png" alt="체크"> 소속정보</label>
+    <input type="radio" name="user" id="user">일반회원
+    <input type="radio" name="user" id="">기업회원
+    <input type="radio" name="user" id="">공공기관
+    <hr>
+    <label for="where"><img src="check.png" alt="체크"> 소속명</label>
+    <input type="text" name="" id="where">
+    <hr>
+    <label for="add1"> 우편번호</label>
+    <input type="text" name="" id="add1"> <button>검색</button>
+    <hr>
+    <label for="add2"> 주소</label>
+    <input type="text" name="" id="add2">
+    <hr>
+    <label for="where"> 상세주소</label>
+    <input type="text" name="" id="where">
+    <hr>
+    <label for="add1"> 인증서 DN</label>
+    <input type="text" name="" id="add1"> <button>인증서등록</button>
+    <span style="font-size:x-small;">(공공기관 회원은 인증서 등록을 해 주시기 바랍니다.)</span>
+    <hr>
+    <label for="">자기소개</label>
+    <!-- textarea : 여러 줄 입력이 가능한 텍스트상자
+     rows : 텍스트 줄
+     cols : 한 줄의 텍스트 길이 -->
+    <textarea name="" id="" rows="5" cols="30"></textarea>
+    <hr>
+  </div>
+  <div class="button">
+    <p></p>
+    <button><img src="checkfull.png" alt="가입신청"> 가입신청</button>
+    <!-- <input type="submit" alt="가입신청 버튼" value="가입신청" > -->
+    <!-- <button><img src="checkfull.png" alt="가입신청"> 가입신청</button> -->
+    <button><img src="x.png" alt="엑스"> 취소</button>
+  </div>
+  <!-- </fieldset> -->
+</form>
+</body>
+</html>
