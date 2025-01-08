@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 화면</title>
+</head>
+<body>
+  <form action="서버페이지" method="post">
+    <fieldset>
+      <legend>검색</legend>
+      <label>이름<input type="checkbox" name="namebox" value="name"></label>
+      <label>별명<input type="checkbox" name="nickbox" value="nick"></label>
+      <label></label>
+    </fieldset>
+    <fieldset>
+      <legend>추가정보</legend>
+      <label for="birth">생년월일</label><input type="time" name="birth" id="birth">
+      <label for="">범위<input type="range" name="range" id="range" min="1" max="10"></label>
+    </fieldset>
+    <fieldset>
+      <legend>성별</legend>
+      <!--radio타입은 그룹에서 하나만 선택되게 하는 기능이다
+      name을 같게해서 그룹으로 묶어준다. 
+      name이 입력이 안되면 각각 체크가 되어서 본래의 기능으로 작동한다고 할 수 없다-->
+      <label for="male">남성</label><input type="radio" name="gender" id="male" value="men">
+      <label for="female">여성</label><input type="radio" name="gender" id="female" value="women">
+    </fieldset>
+    <!--fieldset의 기능 : 그룹으로 묶어주는 것 테두리가 생긴다-->
+    <fieldset>
+      <!--legend의 기능 : fieldset으로 묶어준 그룹의 테두리에 이름/설명을 표시-->
+      <legend>사용자 정보</legend>
+      <!--label의 의미 : 라벨부분을 클릭하면 for로 설정한input으로 이동한다-->
+      <!--name의 의미 : userId라는 곳에 사용자가 입력한 값을 전달하겠다는 의미-->
+      <label>사용자 아이디: <input type="text" name="userId" value="admin"></label>
+      <!--password타입은 사용자가 입력시 ....와 같이 숨겨진 형태로 보인다.-->
+      <label>비밀번호: <input type="password" name="userPw" value="admin"></label>
+      <!--label의 for기능 : 어떤 인풋에 대한 라벨인지를 추적할 수 있게 하는 기능이다
+      input의 id값을 입력하면 된다.-->
+      <label for="userEmail">이메일: </label>
+      <!--required의 기능 : 반드시 해당하는 인풋타입에 맞게 값을 입력해야 한다.-->
+      <input type="email" id="userEmail" required>
+    </fieldset>
+    <fieldset> 
+      
+      <legend>버튼</legend>
+      <!-- submit의 의미 : frome action에 저장한 서버페이지로 전송-->
+      <!--submit타입에서 value값을 지정하지 않으면 제출로 나온다-->
+      <input type="submit" value="로그인"> 
+      <!-- reset의 의미 : 사용자가 아무것도 입력하지 않은 처음값으로 초기화한다.-->
+      <input type="reset" value="초기화">
+    </fieldset>
+  </form>
+</body>
+</html>
