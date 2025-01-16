@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <!-- 숙제...
   구구단인데..
   3단이면 3*1에서 3*3까지... 6단이면 6*1에서 6*6까지 나오도록
   html Document에 구현하기 >> 몇단인지 입력하고 버튼누르면 출력-->
+  <input type="number" name="" id="">
+  <button>구구단 출력</button>
+  <hr>
+  <div id="show">
+
+  </div>
+  <script>
+    document.querySelector('button').addEventListener('click', function () {
+      let getnumber = document.querySelector('input').valueAsNumber;
+      console.log(`구구단 ${getnumber}단`);
+      document.querySelector('#show').innerHTML = `구구단 ${getnumber}단`;
+      document.querySelector('#show').innerHTML += "<p></p>";
+      let html;
+      for (let i = 1; i <= getnumber; i++) {
+        html = (`${getnumber} * ${i} = ${getnumber*i}`);
+        document.querySelector('#show').innerHTML += html;
+        document.querySelector('#show').innerHTML += "<p></p>";
+      }
+    });
+  </script>
 </body>
+
 </html>
