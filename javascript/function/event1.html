@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구구단</title>
+</head>
+<body>
+  단 :<input type="number" name="dan" id="">
+  <button>구구단 출력</button>
+  <hr>
+  <div id="show"></div>
+  <script>
+    // 버튼에 클릭 이벤트 등록
+    // 이벤트 핸들러(함수)에 단 정보(input)를 읽어와서 구구단 출력
+    // document.querySelector('button').addEventListener('click',function(){
+    //   document.querySelector('input').valueAsNumber
+    //   console.log(`구구단 ${document.querySelector('input').valueAsNumber}단`);
+    //   document.querySelector('#show').innerHTML=`구구단 ${document.querySelector('input').valueAsNumber}단`;
+    //   document.querySelector('#show').innerHTML+= "<p></p>";
+    //   let outrnrneks;
+    //   for(let i = 1; i < 10; i++){
+    //     outrnrneks =(`${document.querySelector('input').valueAsNumber} * ${i} = ${document.querySelector('input').valueAsNumber*i}`);
+    //     console.log(outrnrneks);
+    //     document.querySelector('#show').innerHTML+= outrnrneks;
+    //     document.querySelector('#show').innerHTML+= "<p></p>";
+    //   }
+    // });
+
+    document.querySelector('button').addEventListener('click',function(){
+      let getValue = document.querySelector('input').valueAsNumber; // 입력한 값을 저장함
+      console.log(`구구단 ${getValue}단`); // 콘솔에 몇단을 계산하는지 표시함
+      document.querySelector('#show').innerHTML=`구구단 ${getValue}단`; // html에 몇단을 계산하는지 표시함
+      document.querySelector('#show').innerHTML+= "<p></p>";// html에 몇단을 계산하는지 표시함
+      let outResult; // 단 * 1~9 = 결과값을 저장할 변수를 선언
+      for(let i = 1; i < 10; i++){
+        outResult =(`${getValue} * ${i} = ${getValue*i}`); // 계산한 구구단의 결과값을 저장함
+        console.log(outResult); // 콘솔에 구구단 결과값을 출력함
+        document.querySelector('#show').innerHTML+= outResult; // html에 구구단 결과값을 출력함
+        document.querySelector('#show').innerHTML+= "<p></p>"; // html에 구구단 결과값을 출력함 
+        // document.querySelector('#show').innerText+= outResult; // html에 구구단 결과값을 텍스트형식으로 출력함
+        // document.querySelector('#show').innerText+= "<p></p>"; // html에 구구단 결과값을 텍스트형식으로 출력함
+    }});
+  </script>
+</body>
+</html>
