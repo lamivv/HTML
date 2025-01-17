@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>달력</title>
+  <style>
+    input {
+      width: 50px;
+      text-align: center;
+    }
+
+    div>table,
+    tr,
+    th,
+    td {
+      padding: 10px 15px;
+      text-align: center;
+    }
+
+    div>table {
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="number" name="year" id="" value="2025"> 년
+  <input type="number" name="month" id="" value="1"> 월
+  <button name="month">달력</button>
+  <hr>
+  <div id="show"></div>
+
+  <script>
+    // 달력에 빨갛게 색칠..
+    let holydas = [{
+      month: 1,
+      days: [1, 2, 3]
+    }, {
+      month: 2,
+      days: [5, 8, 12]
+    }, {
+      month: 3,
+      days: [1, 10, 15]
+    }];
+
+
+    let inyear = 2025;
+    let inmonth = 1;
+    document.querySelector('button').addEventListener('click', function () {
+      inmonth = document.querySelector('[name="month"]').valueAsNumber;
+      inyear = document.querySelector('[name="year"]').valueAsNumber;
+      console.log(inmonth);
+      console.log(inyear);
+      makeCalendar(inyear, inmonth);
+
+    });
+    makeCalendar();
+
+    function makeCalendar(year = 2025, month = 1) {
+      let now = new Date();
+
+      now.setFullYear(inyear);
+      now.setMonth(inmonth - 1);
+      now.setDate(1); //1일의 요일정보
+      let startblank = now.getDay(); //일의 위치 앞의 공백
+
+      now.setMonth(inmonth);
+      now.setDate(0);
+      let lastDate = now.getDate(); // 월의 말일
+
+      let days = ['일', '월', '화', '수', '목', '금', '토'];
+      let html = '';
+      html += '<table border="1">';
+      html += `<caption>${inyear}년${inmonth}월</caption>`;
+      html += '<thead><tr>';
+      // for(let i=0; i<7; i++){
+      //   html +=`<th>${days[i]}</th>`;
+      // }
+      for (let day of days) {
+        html += `<th>${day}</th>`;
+      }
+      html += '</tr></thead>';
+      html += '<tbody id="list">';
+      html += '<tr>';
+      // 시작 날짜에 맞춰서 앞에 공백 생성
+      // 달력 생성
+      for (let i = 0; i < startblank; i++) {
+        html += '<td></td>';
+      }
+      for (let i = 1; i <= lastDate; i++) {
+        if ((i + startblank) % 7 == 0) {
+          // 토요일의 배경색과 글자색 변경
+          html += `<td style="background-color:blue; color: white;">${i}</td>`;
+        } else if ((i + startblank) % 7 == 1) {
+          // 일요일의 배경색과 글자색 변경
+          html += `<td style="background-color:red; color: white;">${i}</td>`;
+        } else {
+          // 나머지 일자는 기본 배경색과 기본 글자색
+          html += `<td>${i}</td>`;
+        }
+        // 토요일마다 줄 바꿈
+        if ((i + startblank) % 7 == 0) {
+          html += '<tr></tr>';
+        }
+      }
+      html += '</tr>';
+      html += '</tbody>';
+      html += '</table>';
+      document.querySelector('#show').innerHTML = html;
+    }
+
+    // 년도와 월을 지정해주면 달력이 생성되게.. 
+    // 1일의 요일을 가져와서 그 달의 마지막날 계산 
+  </script>
+</body>
+
+</html>

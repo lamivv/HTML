@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습</title>
+</head>
+<body>
+  이름 : <input type="text" name="friend"> <button>친구추가</button>
+  <button name="remove">친구삭제</button>
+  <hr>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>친구 목록</th>
+      </tr>
+    </thead>
+    <tbody id="list">
+      <!-- <tr>
+        <td>땅콩</td>
+      </tr> -->
+    </tbody>
+  </table>
+  <script>
+    let friendAry=['뽀뽀','루루','땅콩','치즈','망고'];
+    let targetItem = document.querySelector('#list'); // tbody
+
+    // 친구 추가 이벤트
+    document.querySelector('button').addEventListener('click',function(){
+      let name = document.querySelector('input[name="friend"]').value;
+      friendAry.push(name); // 추가받은 친구를 배열에 추가
+      makeList();
+      // 초기화
+      document.querySelector('input[name="friend"]').value='';
+    });
+
+    // 친구 삭제 이벤트
+    document.querySelector('button[name="remove"]').addEventListener('click',function(){
+      // friendAry.pop(); // 마지막 배열 삭제
+      let SearchName = document.querySelector('input[name="friend"]').value;
+      let pos = friendAry.indexOf(SearchName); // 이름의 인덱스값 
+      // 인덱스값 위치의 배열을 삭제
+      if(pos==-1){
+        alert("찾는 이름이 없습니다");
+        return;
+      } else {
+        friendAry.splice(pos, 1);
+      }
+      makeList();
+      // 초기화
+      document.querySelector('input[name="friend"]').value='';
+    });
+
+    // 목록 출력
+    function makeList() {
+      let html= '';
+      friendAry.forEach(function(item, idx, ary){
+        html += `<tr><td>${item}</td></tr>`;
+      });
+      targetItem.innerHTML = html;
+    }
+    makeList(); // 초기화면
+  </script>
+</body>
+</html>

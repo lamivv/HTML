@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습2</title>
+</head>
+<body>
+  이름   : <input type="text" name="friend">
+  친밀도 : <input type="number" name="score"> <button>친구추가</button>
+  <button name="remove">친구삭제</button>
+  <hr>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>친구</th><th>친밀도</th>
+      </tr>
+    </thead>
+    <tbody id="list">
+      
+    </tbody>
+  </table>
+  <script>
+    let friendAry=[
+      {name:'뽀뽀', score:80},
+      {name:'루루', score:70},
+      {name:'땅콩', score:85},
+      {name:'치즈', score:75},
+      {name:'망고', score:90}
+    ];
+    console.log(friendAry);
+    let targetItem = document.querySelector('#list'); // tbody
+
+    // 친구 추가 이벤트
+    document.querySelector('button').addEventListener('click',function(){
+      let name = document.querySelector('input[name="friend"]').value;
+      let score = document.querySelector('input[name="score"]').value;
+      friendAry.push({name:name, score:score}); // 추가받은 친구를 배열에 추가
+      // friendAry.push({name,score}); // 속성과 변수의 이름이 같으면 줄여서 써도 된다
+
+      makeList();
+      // 초기화
+      document.querySelector('input[name="friend"]').value='';
+    });
+
+    // 친구 삭제 이벤트
+    document.querySelector('button[name="remove"]').addEventListener('click',function(){
+      // friendAry.pop(); // 마지막 배열 삭제
+      let SearchName = document.querySelector('input[name="friend"]').value;
+      friendAry = friendAry.filter(function(item, idx, ary){
+        // 이름이 같으면 false를 반환, 이름이 다르면 true를 반환.
+        // item.name과 SearchName을 비교해서 같지않은 것(=인풋한 이름을 제외한 것)을 배열에 다시 넣어준다
+        return item.name != SearchName;
+        // if(item.name==SearchName){
+        //   return false;
+        // } else {
+        //   return true;
+        // }
+        // alert("찾는 이름이 없습니다.");
+      });
+      console.log(friendAry);
+      makeList();
+      // 초기화
+      document.querySelector('input[name="friend"]').value='';
+    });
+
+    // 목록 출력
+    function makeList() {
+      let html= '';
+      friendAry.forEach(function(item, idx, ary){
+        html += `<tr><td>${item.name}</td><td>${item.score}</td></tr>`;
+      });
+      targetItem.innerHTML = html;
+    }
+    makeList(); // 초기화면
+
+    // </table> 아래에 <hr>을 생성하고 그 아래에 버튼 2개를 생성
+    // 버튼은 score를 기준으로 정렬버튼 1개, 역순정렬버튼 1개임.
+  </script>
+</body>
+</html>
