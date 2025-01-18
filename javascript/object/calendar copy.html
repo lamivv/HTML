@@ -34,7 +34,7 @@
 
   <script>
     // 달력에 빨갛게 색칠..
-    let holydas = [{
+    let holydays = [{
       month: 1,
       days: [1, 2, 3]
     }, {
@@ -45,16 +45,12 @@
       days: [1, 10, 15]
     }];
 
-
     let inyear = 2025;
     let inmonth = 1;
     document.querySelector('button').addEventListener('click', function () {
       inmonth = document.querySelector('[name="month"]').valueAsNumber;
       inyear = document.querySelector('[name="year"]').valueAsNumber;
-      console.log(inmonth);
-      console.log(inyear);
       makeCalendar(inyear, inmonth);
-
     });
     makeCalendar();
 
@@ -89,26 +85,48 @@
       for (let i = 0; i < startblank; i++) {
         html += '<td></td>';
       }
+
+      //   let filholy = holydays.filter(function (item, idx, ary) {
+      //   if (item.month == inmonth) {
+      //     return item.days;
+      //   }
+      // });
+
+      let filholy = [];
+      holydays.forEach(function (item, idx, ary) {
+        if (item.month == inmonth) {
+          filholy.push(item.days);
+        }
+      });
+      // let asd=[ 5, 2, 3];
+      // console.log(asd);
+      // console.log(filholy);
+      // console.log(filholy[0]);
+
+      // startblank = 3 i= 4일때 토요일이다..
       for (let i = 1; i <= lastDate; i++) {
-        if ((i + startblank) % 7 == 0) {
-          // 토요일의 배경색과 글자색 변경
-          html += `<td style="background-color:blue; color: white;">${i}</td>`;
-        } else if ((i + startblank) % 7 == 1) {
-          // 일요일의 배경색과 글자색 변경
-          html += `<td style="background-color:red; color: white;">${i}</td>`;
-        } else {
-          // 나머지 일자는 기본 배경색과 기본 글자색
-          html += `<td>${i}</td>`;
-        }
-        // 토요일마다 줄 바꿈
-        if ((i + startblank) % 7 == 0) {
-          html += '<tr></tr>';
-        }
+      if (filholy[0].indexOf(i) != -1) {
+        // 휴일 표시
+        html += `<td style="background-color:yellow; color: black;">${i}</td>`;
+      } else if ((i + startblank) % 7 == 0) {
+        // 토요일의 배경색과 글자색 변경
+        html += `<td style="background-color:blue; color: white;">${i}</td>`;
+      } else if ((i + startblank) % 7 == 1) {
+        // 일요일의 배경색과 글자색 변경
+        html += `<td style="background-color:red; color: white;">${i}</td>`;
+      } else {
+        // 나머지 일자는 기본 배경색과 기본 글자색
+        html += `<td>${i}</td>`;
       }
-      html += '</tr>';
-      html += '</tbody>';
-      html += '</table>';
-      document.querySelector('#show').innerHTML = html;
+      // 토요일마다 줄 바꿈
+      if ((i + startblank) % 7 == 0) {
+        html += '<tr></tr>';
+      }
+    }
+    html += '</tr>';
+    html += '</tbody>';
+    html += '</table>';
+    document.querySelector('#show').innerHTML = html;
     }
   </script>
 </body>
