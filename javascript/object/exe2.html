@@ -20,6 +20,11 @@
       
     </tbody>
   </table>
+  <hr>
+  친밀도에 따른 정렬
+  <br> 
+  <button name="sort">정렬하기</button>
+  <button name="sortreverse">역순 정렬하기</button>
   <script>
     let friendAry=[
       {name:'뽀뽀', score:80},
@@ -41,41 +46,68 @@
       makeList();
       // 초기화
       document.querySelector('input[name="friend"]').value='';
+      document.querySelector('input[name="score"]').value='';
     });
 
     // 친구 삭제 이벤트
     document.querySelector('button[name="remove"]').addEventListener('click',function(){
-      // friendAry.pop(); // 마지막 배열 삭제
-      let SearchName = document.querySelector('input[name="friend"]').value;
-      friendAry = friendAry.filter(function(item, idx, ary){
-        // 이름이 같으면 false를 반환, 이름이 다르면 true를 반환.
-        // item.name과 SearchName을 비교해서 같지않은 것(=인풋한 이름을 제외한 것)을 배열에 다시 넣어준다
-        return item.name != SearchName;
-        // if(item.name==SearchName){
-        //   return false;
-        // } else {
-        //   return true;
-        // }
-        // alert("찾는 이름이 없습니다.");
-      });
-      console.log(friendAry);
-      makeList();
-      // 초기화
-      document.querySelector('input[name="friend"]').value='';
+    // friendAry.pop(); // 마지막 배열 삭제
+    let SearchName = document.querySelector('input[name="friend"]').value;
+    friendAry = friendAry.filter(function(item, idx, ary){
+    // 이름이 같으면 false를 반환, 이름이 다르면 true를 반환.
+    // item.name과 SearchName을 비교해서 같지않은 것(=인풋한 이름을 제외한 것)을 배열에 다시 넣어준다
+    return item.name != SearchName;
+    // if(item.name==SearchName){
+    // return false;
+    // } else {
+    // return true;
+    // }
+    // alert("찾는 이름이 없습니다.");
+    });
+    console.log(friendAry);
+    makeList();
+    // 초기화
+    document.querySelector('input[name="friend"]').value='';
     });
 
     // 목록 출력
     function makeList() {
-      let html= '';
-      friendAry.forEach(function(item, idx, ary){
-        html += `<tr><td>${item.name}</td><td>${item.score}</td></tr>`;
-      });
-      targetItem.innerHTML = html;
+    let html= '';
+    friendAry.forEach(function(item, idx, ary){
+    html += `<tr>
+      <td>${item.name}</td>
+      <td>${item.score}</td>
+    </tr>`;
+    });
+    targetItem.innerHTML = html;
     }
     makeList(); // 초기화면
 
-    // </table> 아래에 <hr>을 생성하고 그 아래에 버튼 2개를 생성
+    // </table> 아래에
+    //<hr>을 생성하고 그 아래에 버튼 2개를 생성
     // 버튼은 score를 기준으로 정렬버튼 1개, 역순정렬버튼 1개임.
+
+    // result.sort(); // 가나다 순서로 정렬
+    // result.sort().reverse(); // 역순으로 정렬
+
+    // 친밀도에 따른 정렬 
+    document.querySelector('button[name="sort"]').addEventListener('click',function(){
+    friendAry.sort(function(a,b){
+      return b.score - a.score;
+    }); 
+    makeList();
+    });
+
+    // 친밀도에 따른 정렬 (역순)
+    document.querySelector('button[name="sortreverse"]').addEventListener('click',function(){
+    friendAry.sort(function(a,b){
+      return a.score - b.score;
+    }); 
+    makeList();
+    });
+
+    // 참고자료 https://velog.io/@ceusun0815/JavaScript-sort-%ED%95%A8%EC%88%98%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%A0%95%EB%A0%AC
+
   </script>
 </body>
 </html>
